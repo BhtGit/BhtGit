@@ -122,7 +122,7 @@ public class ZookeeperProperties {
             }
         }
 
-        if (paramList.size() == 0) {
+        if (paramList.isEmpty()) {
             // 所有数据全部查询完毕
             throw new RuntimeException("");
         } else {
@@ -146,7 +146,7 @@ public class ZookeeperProperties {
         String s = new String(b);
 
         List<String> list = zooKeeper.getChildren(path, false);
-        if (list == null || list.size() == 0) {
+        if (list == null || list.isEmpty()) {
             printPath(s, path);
         } else {
             for (String pathChild : list) {
