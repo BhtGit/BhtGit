@@ -29,13 +29,12 @@ public class Test05 {
 
         for (int i = 0; i < chars.length; i++) {
             for (int j = s.length() - 1; j > i && j - i > indexB - indexA; j--) {
-                if (chars[i] == chars[j]) {
-                    if (judge(chars, i, j)) {
-                        indexA = i;
-                        indexB = j;
-                        break;
-                    }
+                if (chars[i] != chars[j] || !judge(chars, i, j)) {
+                    continue;
                 }
+                indexA = i;
+                indexB = j;
+                break;
             }
         }
 
@@ -53,7 +52,7 @@ public class Test05 {
 
 
     public static void main(String[] args) {
-        String s = "cbbd";
+        String s = "112321231dasd2asddsa312dsadA12";
         String s1 = new Test05().longestPalindrome(s);
         System.out.println(s1);
     }

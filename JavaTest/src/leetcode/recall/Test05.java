@@ -1,7 +1,5 @@
 package leetcode.recall;
 
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * 单词搜索
  * 给定一个二维网格和一个单词，找出该单词是否存在于网格中。
@@ -20,21 +18,24 @@ import org.apache.commons.lang3.StringUtils;
  * 给定 word = "ABCCED", 返回 true.
  * 给定 word = "SEE", 返回 true.
  * 给定 word = "ABCB", 返回 false.
+ * <p>
+ * 提示：
+ * board 和 word 中只包含大写和小写英文字母。
+ * 1 <= board.length <= 200
+ * 1 <= board[i].length <= 200
+ * 1 <= word.length <= 10^3
  *
  * @author ：BHT
  * @date ：2019-11-13 10:22
  */
 public class Test05 {
 
-    // 写的什么jb，回溯算法！
-
     public static void main(String[] args) {
         char[][] borad = {
-                {'A', 'B', 'C', 'E'},
-                {'S', 'F', 'E', 'S'},
-                {'A', 'D', 'E', 'E'}
-        };
-        String word = "ASFBC";
+                {'A','B','C','E'},
+                {'S','F','C','S'},
+                {'A','D','E','E'}};
+        String word = "SEE";
 
         boolean exist = new Test05().exist(borad, word);
         System.out.println(exist);
@@ -42,108 +43,59 @@ public class Test05 {
     }
 
     public boolean exist(char[][] board, String word) {
-
-        if (board.length == 0 || board[0].length == 0 || StringUtils.isBlank(word)) {
+        if (word == null || "".equals(word)) {
+            return true;
+        }
+        if (board == null || board.length == 0 || board[0].length == 0) {
             return false;
         }
+        char[] wordChars = word.toCharArray();
+        int[][] usedBoard = new int[board.length][board[0].length];
 
-        char[] chars = word.toCharArray();
-        int[] index;
-
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                index = selectFirstChar(board, chars[0], i, j);
-                if (index == null) {
-                    return false;
+        for (int yIndex = 0; yIndex < board.length; yIndex++) {
+            for (int xIndex = 0; xIndex < board[0].length; xIndex++) {
+                if (board[yIndex][xIndex] != wordChars[0]) {
+                    continue;
                 }
-                boolean exist = exist(board, chars, index);
-                if (exist) {
+                usedBoard[yIndex][xIndex] = 1;
+                if (judgeExist(board, yIndex, xIndex, usedBoard, wordChars, 1)) {
                     return true;
                 }
+                usedBoard[yIndex][xIndex] = 0;
             }
         }
-
-        return false;
-
-    }
-
-    public boolean exist(char[][] board, char[] chars, int[] index) {
-
-        int[][] flag = new int[board.length][board[0].length];
-        flag[index[0]][index[1]] = 1;
-        for (int i = 1; i < chars.length; i++) {
-            if (!isExist(board, flag, chars[i], index)) {
-                return false;
-            }
-        }
-        return true;
-
-    }
-
-    private int[] selectFirstChar(char[][] board, char firstChar, int startX, int startY) {
-        int[] index = new int[2];
-        for (int i = startX; i < board.length; i++) {
-            for (int j = startY; j < board[i].length; j++) {
-                if (board[i][j] == firstChar) {
-                    index[0] = i;
-                    index[1] = j;
-                    return index;
-                }
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 周围是否存在该目标
-     */
-    private boolean isExist(char[][] board, int[][] flag, char ch, int[] index) {
-        if (isExistUp(board, flag, ch, index[0], index[1])) {
-            return true;
-        }
-        if (isExistDown(board, flag, ch, index[0], index[1])) {
-            return true;
-        }
-        if (isExistLeft(board, flag, ch, index[0], index[1])) {
-            return true;
-        }
-        if (isExistRight(board, flag, ch, index[0], index[1])) {
-            return true;
-        }
         return false;
     }
 
-
-    private boolean isExistUp(char[][] board, int[][] flag, char ch, int x, int y) {
-        if (x > 0 && board[x - 1][y] == ch && flag[x - 1][y] == 0) {
-            flag[x - 1][y] = 1;
-            return true;
-        }
-        return false;
-
+    private boolean judgeExist(char[][] board, int yIndex, int xIndex, int[][] usedBoard, char[] wordChars, int currentWordIndex) {
+        return judgeNext(board, yIndex, xIndex-1, usedBoard, wordChars, currentWordIndex)
+                || judgeNext(board, yIndex, xIndex+1, usedBoard, wordChars, currentWordIndex)
+                || judgeNext(board, yIndex-1, xIndex, usedBoard, wordChars, currentWordIndex)
+                || judgeNext(board, yIndex+1, xIndex, usedBoard, wordChars, currentWordIndex);
     }
 
-    private boolean isExistDown(char[][] board, int[][] flag, char ch, int x, int y) {
-        if (x < board.length - 1 && board[x + 1][y] == ch && flag[x + 1][y] == 0) {
-            flag[x + 1][y] = 1;
+    private boolean judgeNext(char[][] board, int yIndex, int xIndex, int[][] usedBoard, char[] wordChars, int currentWordIndex) {
+        if (wordChars.length == currentWordIndex) {
+            // 已查询到最后
             return true;
         }
-        return false;
-    }
-
-    private boolean isExistLeft(char[][] board, int[][] flag, char ch, int x, int y) {
-        if (y > 0 && board[x][y - 1] == ch && flag[x][y - 1] == 0) {
-            flag[x][y - 1] = 1;
+        if (xIndex == -1 || yIndex == -1 || yIndex == board.length || xIndex == board[0].length) {
+            // 越界
+            return false;
+        }
+        if (usedBoard[yIndex][xIndex] == 1) {
+            // 字母已被使用
+            return false;
+        }
+        if (board[yIndex][xIndex] != wordChars[currentWordIndex]) {
+            return false;
+        }
+        usedBoard[yIndex][xIndex] = 1;
+        currentWordIndex++;
+        if (judgeExist(board, yIndex, xIndex, usedBoard, wordChars, currentWordIndex)) {
             return true;
         }
-        return false;
-    }
-
-    private boolean isExistRight(char[][] board, int[][] flag, char ch, int x, int y) {
-        if (y < board[x].length - 1 && board[x][y + 1] == ch && flag[x][y + 1] == 0) {
-            flag[x][y + 1] = 1;
-            return true;
-        }
+        usedBoard[yIndex][xIndex] = 0;
         return false;
     }
 
