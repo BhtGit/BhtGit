@@ -32,9 +32,9 @@ public class Test05 {
 
     public static void main(String[] args) {
         char[][] borad = {
-                {'A','B','C','E'},
-                {'S','F','C','S'},
-                {'A','D','E','E'}};
+                {'A', 'B', 'C', 'E'},
+                {'S', 'F', 'C', 'S'},
+                {'A', 'D', 'E', 'E'}};
         String word = "SEE";
 
         boolean exist = new Test05().exist(borad, word);
@@ -50,31 +50,30 @@ public class Test05 {
             return false;
         }
         char[] wordChars = word.toCharArray();
-        int[][] usedBoard = new int[board.length][board[0].length];
 
         for (int yIndex = 0; yIndex < board.length; yIndex++) {
             for (int xIndex = 0; xIndex < board[0].length; xIndex++) {
                 if (board[yIndex][xIndex] != wordChars[0]) {
                     continue;
                 }
-                usedBoard[yIndex][xIndex] = 1;
-                if (judgeExist(board, yIndex, xIndex, usedBoard, wordChars, 1)) {
+                board[yIndex][xIndex] += 100;
+                if (judgeExist(board, yIndex, xIndex, wordChars, 1)) {
                     return true;
                 }
-                usedBoard[yIndex][xIndex] = 0;
+                board[yIndex][xIndex] -= 100;
             }
         }
         return false;
     }
 
-    private boolean judgeExist(char[][] board, int yIndex, int xIndex, int[][] usedBoard, char[] wordChars, int currentWordIndex) {
-        return judgeNext(board, yIndex, xIndex-1, usedBoard, wordChars, currentWordIndex)
-                || judgeNext(board, yIndex, xIndex+1, usedBoard, wordChars, currentWordIndex)
-                || judgeNext(board, yIndex-1, xIndex, usedBoard, wordChars, currentWordIndex)
-                || judgeNext(board, yIndex+1, xIndex, usedBoard, wordChars, currentWordIndex);
+    private boolean judgeExist(char[][] board, int yIndex, int xIndex, char[] wordChars, int currentWordIndex) {
+        return judgeNext(board, yIndex, xIndex - 1, wordChars, currentWordIndex)
+                || judgeNext(board, yIndex, xIndex + 1, wordChars, currentWordIndex)
+                || judgeNext(board, yIndex - 1, xIndex, wordChars, currentWordIndex)
+                || judgeNext(board, yIndex + 1, xIndex, wordChars, currentWordIndex);
     }
 
-    private boolean judgeNext(char[][] board, int yIndex, int xIndex, int[][] usedBoard, char[] wordChars, int currentWordIndex) {
+    private boolean judgeNext(char[][] board, int yIndex, int xIndex, char[] wordChars, int currentWordIndex) {
         if (wordChars.length == currentWordIndex) {
             // 已查询到最后
             return true;
@@ -83,19 +82,16 @@ public class Test05 {
             // 越界
             return false;
         }
-        if (usedBoard[yIndex][xIndex] == 1) {
-            // 字母已被使用
-            return false;
-        }
         if (board[yIndex][xIndex] != wordChars[currentWordIndex]) {
             return false;
         }
-        usedBoard[yIndex][xIndex] = 1;
+        // +100后可确保字符不重复
+        board[yIndex][xIndex] += 100;
         currentWordIndex++;
-        if (judgeExist(board, yIndex, xIndex, usedBoard, wordChars, currentWordIndex)) {
+        if (judgeExist(board, yIndex, xIndex, wordChars, currentWordIndex)) {
             return true;
         }
-        usedBoard[yIndex][xIndex] = 0;
+        board[yIndex][xIndex] -= 100;
         return false;
     }
 
