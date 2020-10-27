@@ -33,9 +33,9 @@ public class Test05 {
     public static void main(String[] args) {
         char[][] borad = {
                 {'A', 'B', 'C', 'E'},
-                {'S', 'F', 'C', 'S'},
+                {'S', 'F', 'C', 'S', 'D'},
                 {'A', 'D', 'E', 'E'}};
-        String word = "SEE";
+        String word = "ESD";
 
         boolean exist = new Test05().exist(borad, word);
         System.out.println(exist);
@@ -78,7 +78,7 @@ public class Test05 {
             // 已查询到最后
             return true;
         }
-        if (xIndex == -1 || yIndex == -1 || yIndex == board.length || xIndex == board[0].length) {
+        if (xIndex == -1 || yIndex == -1 || yIndex == board.length || xIndex == board[yIndex].length) {
             // 越界
             return false;
         }
