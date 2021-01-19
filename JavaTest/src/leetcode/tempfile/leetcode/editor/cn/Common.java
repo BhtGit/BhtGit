@@ -1,7 +1,5 @@
 package leetcode.tempfile.leetcode.editor.cn;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.lang.reflect.Constructor;
 
 /**
@@ -9,22 +7,28 @@ import java.lang.reflect.Constructor;
  */
 public class Common {
 
-    public static Object getSolution(Class clazz){
+    public static Object getSolution(Class clazz) {
+        Object result = null;
         try {
             Object o = clazz.newInstance();
             Class[] declaredClasses = clazz.getDeclaredClasses();
-            for (Class declaredClass : declaredClasses){
+            for (Class declaredClass : declaredClasses) {
                 String name = declaredClass.getName();
-                if (name.contains("Solution")){
+                if (name.contains("Solution")) {
                     Constructor con2 = declaredClass.getDeclaredConstructor(clazz);
                     con2.setAccessible(true);
-                    return con2.newInstance(o);
+                    result = con2.newInstance(o);
                 }
+            }
+            // 说明不是内部类
+            if (result == null) {
+                Class c1 = Class.forName(clazz.getName().substring(0,clazz.getName().lastIndexOf('.')) + ".Solution");
+                result = c1.newInstance();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return result;
     }
 
 }
