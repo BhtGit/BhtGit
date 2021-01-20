@@ -15,7 +15,6 @@ public class BinaryTreeMaximumPathSum {
         int i = solution.maxPathSum(treeNode);
         System.out.println(i);
     }
-}
 // 第124题：二叉树中的最大路径和
 //给你一个二叉树的根节点 root ，返回其最大路径和。 
 //
@@ -107,3 +106,4 @@ class Solution {
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
+}
