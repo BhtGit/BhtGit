@@ -17,7 +17,6 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
         int c = solution.longestSubstring3(str, k);
         System.out.println(c);
     }
-}
 
 // 第395题：至少有K个重复字符的最长子串
 //找到给定字符串（由小写字符组成）中的最长子串 T ， 要求 T 中的每一字符出现次数都不少于 k 。输出 T 的长度。 
@@ -162,4 +161,5 @@ class Solution {
 
 }
 //leetcode submit region end(Prohibit modification and deletion)
-  
+
+}
