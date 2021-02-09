@@ -1,16 +1,18 @@
 package leetcode.tempfile.leetcode.editor.cn;
+
 public class LongestPalindromicSubstring {
     /**
      * 2021-02-08 17:01:33
+     *
      * @author BHT
      */
     public static void main(String[] args) {
-        Solution solution = (Solution) Common.getSolution(LongestPalindromicSubstring .class);
-        String s = solution.longestPalindrome("cbbd");
+        Solution solution = (Solution) Common.getSolution(LongestPalindromicSubstring.class);
+        String s = solution.longestPalindrome("ccc");
         System.out.println(s);
     }
 }
-    
+
 // 第5题：最长回文子串
 //给你一个字符串 s，找到 s 中最长的回文子串。 
 //
@@ -75,41 +77,47 @@ class Solution {
          * 总结：总共有四种情况，其中两种情况可直接取值，两种情况right会右移
          */
         for (int i = 0; i < chars.length; i++) {
+            // if的数量可以减少
+            // 取消right计数，直接用radiusArray[i]计数代码量少一半，但是通过时间为30ms+,
+            /*if (i > right) {
+                radiusArray[i] = 1;
+            } else {
+                radiusArray[i] = Math.min(radiusArray[2 * lastIndex - i], right - i);
+            }
+            while (i - radiusArray[i] >= 0 && i + radiusArray[i] < chars.length && chars[i + radiusArray[i]] == chars[i - radiusArray[i]]) {
+                radiusArray[i]++;
+            }*/
+            // 但是多加几个if未必是坏事  多加几个if执行时间为6ms
+            // 应该是因为while里面的判断较多导致
+            // todo 所以manacher算法首尾不能用同样的标识，会导致多判断几次，如果首尾符号不同，则可以不判断边界
             if (i > right) {
-                right = i;
+                right = Math.max(i, right);
+                lastIndex = Math.max(i, lastIndex);
+            }
+            // 对称位置
+            int symmetryIndex = 2 * lastIndex - i;
+            if (i + radiusArray[symmetryIndex] != right) {
+                radiusArray[i] = Math.min(radiusArray[symmetryIndex], right - i);
+            } else {
                 while (2 * i >= right && right < chars.length && chars[2 * i - right] == chars[right]) {
                     right++;
-                }
-                // 跳出循环时的right不满足条件，所以需要减1
+                }// 跳出循环时的right不满足条件，所以需要减1
                 right--;
                 radiusArray[i] = right - i;
                 lastIndex = i;
-            } else {
-                // 对称位置
-                int symmetryIndex = 2 * lastIndex - i;
-                if (i + radiusArray[symmetryIndex] != right) {
-                    radiusArray[i] = Math.min(radiusArray[symmetryIndex], right - i);
-                } else {
-                    while (2 * i >= right && right < chars.length && chars[2 * i - right] == chars[right]) {
-                        right++;
-                    }// 跳出循环时的right不满足条件，所以需要减1
-                    right--;
-                    radiusArray[i] = right - i;
-                    lastIndex = i;
-                }
             }
 
-            if (radiusArray[i] > longest){
+            if (radiusArray[i] > longest) {
                 longest = radiusArray[i];
                 longestIndex = i;
             }
         }
 
-        int startIndex = longestIndex-longest;
-        int endIndex = longestIndex+longest;
+        int startIndex = longestIndex - longest;
+        int endIndex = longestIndex + longest;
         StringBuilder sb = new StringBuilder();
-        for (int i = startIndex;i<=endIndex;i++){
-            if (chars[i] != '\u0000'){
+        for (int i = startIndex; i <= endIndex; i++) {
+            if (chars[i] != '\u0000') {
                 sb.append(chars[i]);
             }
         }
