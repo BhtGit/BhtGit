@@ -11,16 +11,11 @@ public class LongestPalindromicSubstring {
         String s = solution.longestPalindrome("ccc");
         System.out.println(s);
     }
-}
 
 // 第5题：最长回文子串
 //给你一个字符串 s，找到 s 中最长的回文子串。 
 //
-// 
-//
-// 示例 1： 
-//
-// 
+// 示例 1：
 //输入：s = "babad"
 //输出："bab"
 //解释："aba" 同样是符合题意的答案。
@@ -202,4 +197,5 @@ class Solution {
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
-  
+}
+
