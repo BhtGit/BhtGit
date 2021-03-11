@@ -1,7 +1,5 @@
 package utils;
 
-import jy.test.AppCommon;
-
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -52,7 +50,8 @@ public class AESUtil {
      */
     private void init(){
         try {
-            String key = AppCommon.getAesKey();
+//            String key = AppCommon.getAesKey();
+            String key = "1234561234567890";
             cipherEncrypt = Cipher.getInstance(DEFAULT_CIPHER_ALGORITHM);
             cipherDecrypt = Cipher.getInstance(DEFAULT_CIPHER_ALGORITHM);
             cipherEncrypt.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key.getBytes(), "AES"), IV_PARAMETER_SPEC);
