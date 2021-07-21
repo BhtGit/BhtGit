@@ -49,10 +49,10 @@ public class NumberOfValidWordsForEachPuzzle {
 // 👍 184 👎 0
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+/*class Solution {
     public List<Integer> findNumOfValidWords(String[] words, String[] puzzles) {
         return null;
     }
-}
+}*/
 //leetcode submit region end(Prohibit modification and deletion)
   
