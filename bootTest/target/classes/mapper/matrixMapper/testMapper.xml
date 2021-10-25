@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bht.dao.matrixDao.MatrixTestDao">
+    <select id="testSelect" parameterType="java.lang.String" resultType="java.lang.String">
+        select realName from member where mid = #{mid}
+    </select>
+</mapper>
