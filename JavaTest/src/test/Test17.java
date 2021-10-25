@@ -18,7 +18,7 @@ public class Test17 {
         System.out.println(s1);
         System.out.println(s2);
 
-        String str = "wo\rc\tao le\ncao le\\x0bvzhendecao le";
+//        String str = "wo\rc\tao le\ncao le\\x0bvzhendecao le";
         System.out.println(str);
 
         str = str.replaceAll("[ \\x0b\t\r]","");
