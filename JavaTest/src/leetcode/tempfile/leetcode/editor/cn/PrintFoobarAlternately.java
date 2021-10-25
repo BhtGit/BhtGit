@@ -10,7 +10,7 @@ public class PrintFoobarAlternately {
      * @author BHT
      */
     public static void main(String[] args) {
-        Solution solution = (Solution) Common.getSolution(PrintFoobarAlternately.class);
+//        Solution solution = (Solution) Common.getSolution(PrintFoobarAlternately.class);
 
     }
 }

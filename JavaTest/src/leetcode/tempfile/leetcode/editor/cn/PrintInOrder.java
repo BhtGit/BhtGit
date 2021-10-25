@@ -9,7 +9,7 @@ public class PrintInOrder {
      * @author BHT
      */
     public static void main(String[] args) {
-        Solution solution = (Solution) Common.getSolution(PrintInOrder.class);
+//        Solution solution = (Solution) Common.getSolution(PrintInOrder.class);
 
     }
 }
