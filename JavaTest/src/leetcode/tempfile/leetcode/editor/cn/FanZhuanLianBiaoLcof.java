@@ -16,7 +16,6 @@ public class FanZhuanLianBiaoLcof {
         }
         System.out.println();
     }
-}
 
 // 第剑指 Offer 24题：反转链表
 //定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。 
@@ -67,5 +66,7 @@ class Solution {
     }
 
 }
+}
+
 //leetcode submit region end(Prohibit modification and deletion)
 
