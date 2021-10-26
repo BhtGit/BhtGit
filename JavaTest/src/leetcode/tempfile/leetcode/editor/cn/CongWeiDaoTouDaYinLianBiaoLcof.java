@@ -16,7 +16,6 @@ public class CongWeiDaoTouDaYinLianBiaoLcof {
         }
         System.out.println();
     }
-}
 
 // 第剑指 Offer 06题：从尾到头打印链表
 //输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
@@ -70,5 +69,7 @@ class Solution {
         return reverseList(node, suffix);
     }
 }
+}
+
 //leetcode submit region end(Prohibit modification and deletion)
 
