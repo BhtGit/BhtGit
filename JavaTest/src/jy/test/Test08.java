@@ -1,4 +1,4 @@
-package test;
+package jy.test;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -9,7 +9,7 @@ import java.util.Properties;
 /**
  * @author BHT 2021/5/16 12:54
  */
-public class MailTest {
+public class Test08 {
     public static void main(String[] args) {
 
         try {
@@ -58,14 +58,13 @@ public class MailTest {
         // 2.创建邮件对象
         Message message = new MimeMessage(session);
         // 2.1 设置发件者
-        message.setFrom(new InternetAddress("123@dell.com"));
+        message.setFrom(new InternetAddress("woca@dell.com"));
         // 2.2 设置收件者
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
         // 2.3 设置邮件主题
         message.setSubject(title);
         // 2.4 设置邮件的正文
         message.setContent(msg, "text/html;charset=utf-8");
-        // 2.5 设置发件时间
         message.setSentDate(new Date());
 
         // 3.发送邮件
