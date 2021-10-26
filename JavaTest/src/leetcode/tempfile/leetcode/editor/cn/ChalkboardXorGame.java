@@ -8,10 +8,9 @@ public class ChalkboardXorGame {
      */
     public static void main(String[] args) {
         Solution solution = (Solution) Common.getSolution(ChalkboardXorGame.class);
-        int[] nums = {1,1,2};
+        int[] nums = {1, 1, 2};
         System.out.println(solution.duishuqi(nums));
     }
-}
 
 // 第810题：黑板异或游戏
 //黑板上写着一个非负整数数组 nums[i] 。Alice 和 Bob 轮流从黑板上擦掉一个数字，Alice 先手。如果擦除一个数字后，剩余的所有数字按位异或
@@ -37,51 +36,53 @@ public class ChalkboardXorGame {
 // Related Topics 位运算 脑筋急转弯 数组 数学 博弈 
 // 👍 121 👎 0
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
 
-    public boolean duishuqi(int[] nums) {
-        if (nums.length == 0) {
-            return true;
-        }
-        int index = -1;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != -1) {
-                index = i;
-                break;
-            }
-        }
-        if (index == -1) {
-            return true;
-        }
-        int result = nums[index];
-        for (int i = index + 1; i < nums.length; i++) {
-            if (nums[i] == -1) {
-                continue;
-            }
-            result ^= nums[i];
-        }
-        if (result == 0) {
-            return true;
-        }
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == -1) {
-                continue;
-            }
-            int temp = nums[i];
-            nums[i] = -1;
-            boolean tempResult = duishuqi(nums);
-            nums[i] = temp;
-            if (!tempResult) {
+        public boolean duishuqi(int[] nums) {
+            if (nums.length == 0) {
                 return true;
             }
+            int index = -1;
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] != -1) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index == -1) {
+                return true;
+            }
+            int result = nums[index];
+            for (int i = index + 1; i < nums.length; i++) {
+                if (nums[i] == -1) {
+                    continue;
+                }
+                result ^= nums[i];
+            }
+            if (result == 0) {
+                return true;
+            }
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] == -1) {
+                    continue;
+                }
+                int temp = nums[i];
+                nums[i] = -1;
+                boolean tempResult = duishuqi(nums);
+                nums[i] = temp;
+                if (!tempResult) {
+                    return true;
+                }
+            }
+            return false;
         }
-        return false;
-    }
 
-    public boolean xorGame(int[] nums) {
-        return duishuqi(nums);
+        public boolean xorGame(int[] nums) {
+            return duishuqi(nums);
+        }
     }
 }
+
 //leetcode submit region end(Prohibit modification and deletion)
   
