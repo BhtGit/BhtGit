@@ -28,7 +28,6 @@ public class CongWeiDaoTouDaYinLianBiaoLcof {
 // 限制：
 // 0 <= 链表长度 <= 10000
 // Related Topics 栈 递归 链表 双指针 👍 196 👎 0
-
 //leetcode submit region begin(Prohibit modification and deletion)
 
 /**
