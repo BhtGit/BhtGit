@@ -1,0 +1,18 @@
+// 重装leetcode插件之后，需要重新配置模板
+
+package leetcode.tempfile.leetcode.editor.cn;
+
+public class $!velocityTool.camelCaseName(${question.titleSlug}) {
+    /**
+     * $!velocityTool.date()
+     * @author BHT
+     */
+    public static void main(String[] args) {
+        Solution solution = (Solution) Common.getSolution($!velocityTool.camelCaseName(${question.titleSlug}) .class);
+
+    }
+}
+
+// 第${question.frontendQuestionId}题：${question.title}
+${question.content}
+${question.code}
