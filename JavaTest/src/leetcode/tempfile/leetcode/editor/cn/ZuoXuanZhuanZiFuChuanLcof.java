@@ -10,7 +10,6 @@ public class ZuoXuanZhuanZiFuChuanLcof {
         Solution solution = (Solution) Common.getSolution(ZuoXuanZhuanZiFuChuanLcof.class);
         System.out.println(solution.reverseLeftWords("lrloseumgh", 6));
     }
-}
 
 // 第剑指 Offer 58 - II题：左旋转字符串
 //字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。比如，输入字符串"abcdefg"和数字2，该函数
@@ -50,6 +49,7 @@ class Solution {
         }
         return String.valueOf(res);
     }
-}
+}}
+
 //leetcode submit region end(Prohibit modification and deletion)
   
