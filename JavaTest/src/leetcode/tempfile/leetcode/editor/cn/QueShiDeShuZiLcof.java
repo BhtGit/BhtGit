@@ -10,7 +10,7 @@ public class QueShiDeShuZiLcof {
         Solution solution = (Solution) Common.getSolution(QueShiDeShuZiLcof.class);
         System.out.println(solution.missingNumber(new int[]{0,1,2,3,4}));
     }
-}
+//}
 
 // 第剑指 Offer 53 - II题：0～n-1中缺失的数字
 //一个长度为n-1的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围0～n-1之内。
@@ -48,6 +48,7 @@ class Solution {
         }
         return left;
     }
+}
 }
 //leetcode submit region end(Prohibit modification and deletion)
   
