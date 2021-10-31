@@ -1,6 +1,8 @@
 package leetcode.tempfile.leetcode.editor.cn;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -40,11 +42,32 @@ public class TreeNodeUtil {
         return treeNode;
     }
 
+    /**
+     * 先序遍历
+     */
+    public static List<TreeNode> preOrderTree(TreeNode root) {
+        List<TreeNode> res = new ArrayList<>();
+        setPreOrderTreeToList(root, res);
+        return res;
+    }
+
+    private static void setPreOrderTreeToList(TreeNode node, List<TreeNode> list) {
+        if (node == null) {
+            return;
+        }
+        list.add(node);
+        list.addAll(preOrderTree(node.left));
+        list.addAll(preOrderTree(node.right));
+    }
+
 
     public static void main(String[] args) {
-        Integer[] array = {3, 9, 20, null, null, 15, 7};
+        Integer[] array = {3, 9, 20, 2, null, 15, 7};
         TreeNode treeNode = arrayToTreeNode(array);
         System.out.println(treeNode);
+        List<TreeNode> treeNodes = preOrderTree(treeNode);
+        treeNodes.forEach(node-> System.out.print(node.val+","));
+        System.out.println();
     }
 
 }
