@@ -14,4 +14,12 @@ public class Node {
         this.next = null;
         this.random = null;
     }
+
+    public Node left;
+    public Node right;
+    public Node(int _val,Node _left,Node _right) {
+        val = _val;
+        left = _left;
+        right = _right;
+    }
 }
