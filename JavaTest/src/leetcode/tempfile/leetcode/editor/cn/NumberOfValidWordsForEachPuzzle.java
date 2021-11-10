@@ -11,7 +11,7 @@ public class NumberOfValidWordsForEachPuzzle {
         Solution solution = (Solution) Common.getSolution(NumberOfValidWordsForEachPuzzle .class);
 
     }
-}
+//}
     
 // 第1178题：猜字谜
 //外国友人仿照中国字谜设计了一个英文版猜字谜小游戏，请你来猜猜看吧。
@@ -49,10 +49,11 @@ public class NumberOfValidWordsForEachPuzzle {
 // 👍 184 👎 0
 
 //leetcode submit region begin(Prohibit modification and deletion)
-/*class Solution {
+class Solution {
     public List<Integer> findNumOfValidWords(String[] words, String[] puzzles) {
         return null;
     }
-}*/
+}
+}
 //leetcode submit region end(Prohibit modification and deletion)
   
