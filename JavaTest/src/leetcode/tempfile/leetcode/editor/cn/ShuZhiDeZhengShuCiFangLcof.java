@@ -10,7 +10,7 @@ public class ShuZhiDeZhengShuCiFangLcof {
         Solution solution = (Solution) Common.getSolution(ShuZhiDeZhengShuCiFangLcof.class);
         System.out.println(Math.pow(2.1, -2) + "--" + solution.myPow(2.1, -2));
     }
-}
+//}
 
 // 第剑指 Offer 16题：数值的整数次方
 //实现 pow(x, n) ，即计算 x 的 n 次幂函数（即，xⁿ）。不得使用库函数，同时不需要考虑大数问题。 
@@ -78,6 +78,6 @@ class Solution {
 
 
 }
-//}
+}
 //leetcode submit region end(Prohibit modification and deletion)
   
