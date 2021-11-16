@@ -10,7 +10,7 @@ public class ShuZuZhongShuZiChuXianDeCiShuIiLcof {
         Solution solution = (Solution) Common.getSolution(ShuZuZhongShuZiChuXianDeCiShuIiLcof.class);
 
     }
-}
+//}
 
 // 第剑指 Offer 56 - II题：数组中数字出现的次数 II
 //在一个数组 nums 中除一个数字只出现一次之外，其他数字都出现了三次。请找出那个只出现一次的数字。 
@@ -72,6 +72,7 @@ class Solution {
         }
         return res;
     }
+}
 }
 //leetcode submit region end(Prohibit modification and deletion)
   
