@@ -9,7 +9,7 @@ public class JianShengZiLcof {
 
     public static void main(String[] args) {
         Solution solution = (Solution) Common.getSolution(JianShengZiLcof.class);
-        System.out.println(solution.cuttingRope1(8));
+        System.out.println(solution.cuttingRope(120));
     }
 //}
 
